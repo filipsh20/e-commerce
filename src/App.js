@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 
 import Auth from './components/Auth';
-import Dashboard from './components/Dashboard';
+import Shop from './components/Shop';
+
+import './styles/App.module.css'
 
 const App = () => {
   //configuration
@@ -34,9 +36,9 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/auth' element={session ? <Navigate to='/dashboard' /> : <Auth />} />
-        <Route path='/dashboard' element={session ? <Dashboard /> : <Navigate to='/auth' />} />
-        <Route path='*' element={session ? <Navigate to='/dashboard' /> : <Navigate to='/auth' />} />
+        <Route path='/auth' element={session ? <Navigate to='/shop' /> : <Auth />} />
+        <Route path='/shop' element={session ? <Shop /> : <Navigate to='/auth' />} />
+        <Route path='*' element={session ? <Navigate to='/shop' /> : <Navigate to='/auth' />} />
       </Routes>
     </BrowserRouter>
   )

@@ -1,17 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
-
-body {
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
 .containerAuth {
     height: 100vh;
     overflow: hidden;
     display: flex;
     font-size: 16px;
+
 }
 
 .contentLeft {
@@ -58,7 +50,7 @@ body {
     display: none;
 }
 
-h1 {
+.containerAuth h1 {
     margin-bottom: 30px;
 }
 

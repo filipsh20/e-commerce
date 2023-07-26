@@ -95,7 +95,7 @@ const Auth = () => {
         try {
             const response = await axios.post('/auth/signin', { email: email_si, password: password_si });
             console.log(response.data.message)
-            window.location.href = '/dashboard';
+            window.location.href = '/shop';
         } catch (error) {
             setErrorGeneral_si(error.response.data.message);
         }
@@ -106,7 +106,7 @@ const Auth = () => {
         try {
             const { credential } = event;
             await axios.post('/auth/google', { credential });
-            window.location.href = '/wallet';
+            window.location.href = '/shop';
         } catch (error) {
             setErrorGeneral_si(error.response.data.message);
             setErrorGeneral_su(error.response.data.message);
@@ -114,7 +114,7 @@ const Auth = () => {
     };
 
     const handleErrorGoogle = async (event) => {
-        console.error('Google authentication is not available:', event);
+        console.error('Google authentication is not available: ', event);
     };
 
     // Dynamic page
@@ -149,17 +149,17 @@ const Auth = () => {
                     <div><h1>Getting started!</h1></div>
                     <form onSubmit={handleSubmit_su}>
                         <div className={styles.controller}>
-                            <input className={errorUsername_su ? styles.errorInput : ''} onChange={handleUsername_su} type='text' placeholder='Create a new username' value={username_su}/>
+                            <input className={errorUsername_su ? styles.errorInput : ''} onChange={handleUsername_su} type='text' placeholder='Create a new username' value={username_su} />
                             {errorUsername_su && <img onMouseEnter={() => handleShow_su('username')} onMouseLeave={handleShow_su} className={styles.errorIcon} src={errorIcon} alt='' />}
                             {showErrorUsername_su && <div className={styles.errorMessage}><label>{errorUsername_su}</label></div>}
                         </div>
                         <div className={styles.controller}>
-                            <input className={errorEmail_su ? styles.errorInput : ''} onChange={handleEmail_su} type='email' placeholder='you@example.com' value={email_su}/>
+                            <input className={errorEmail_su ? styles.errorInput : ''} onChange={handleEmail_su} type='email' placeholder='you@example.com' value={email_su} />
                             {errorEmail_su && <img onMouseEnter={() => handleShow_su('email')} onMouseLeave={handleShow_su} className={styles.errorIcon} src={errorIcon} alt='' />}
                             {showErrorEmail_su && <div className={styles.errorMessage}><label>{errorEmail_su}</label></div>}
                         </div>
                         <div className={styles.controller}>
-                            <input className={errorPassword_su ? styles.errorInput : ''} onChange={handlePassword_su} type='password' placeholder='Choose a strong password' value={password_su}/>
+                            <input className={errorPassword_su ? styles.errorInput : ''} onChange={handlePassword_su} type='password' placeholder='Choose a strong password' value={password_su} />
                             {errorPassword_su && <img onMouseEnter={() => handleShow_su('password')} onMouseLeave={handleShow_su} className={styles.errorIconPass} src={errorIcon} alt='' />}
                             {showErrorPassword_su && <div className={styles.errorMessage}><label>{errorPassword_su}</label></div>}
                         </div>
@@ -169,8 +169,8 @@ const Auth = () => {
                     </form>
                     <div className={styles.divider}><label>or</label></div>
                     <div className={styles.alternatives}>
-                        <GoogleOAuthProvider clientId="351591539699-803aglb7vb3mo8r7cqn6pvqnk2r1p29j.apps.googleusercontent.com">
-                            <GoogleLogin onSuccess={(event) => handleSuccessGoogle('signup', event)} onError={handleErrorGoogle} />
+                        <GoogleOAuthProvider clientId="351591539699-dsc4h1c5djml6is8co4ef3un46cpr5ku.apps.googleusercontent.com">
+                            <GoogleLogin onSuccess={handleSuccessGoogle} onError={handleErrorGoogle} />
                         </GoogleOAuthProvider>
                     </div>
                     <div className={styles.change}>
@@ -182,12 +182,12 @@ const Auth = () => {
                     <div><h1>Welcome back!</h1></div>
                     <form onSubmit={handleSubmit_si}>
                         <div className={styles.controller}>
-                            <input className={errorEmail_si ? styles.errorInput : ''} onChange={handleEmail_si} type='email' placeholder='you@example.com' value={email_si}/>
+                            <input className={errorEmail_si ? styles.errorInput : ''} onChange={handleEmail_si} type='email' placeholder='you@example.com' value={email_si} />
                             {errorEmail_si && <img onMouseEnter={() => handleShow_si('email')} onMouseLeave={handleShow_si} className={styles.errorIcon} src={errorIcon} alt='' />}
                             {showErrorEmail_si && <div className={styles.errorMessage}><label>{errorEmail_si}</label></div>}
                         </div>
                         <div className={styles.controller}>
-                            <input className={errorPassword_si ? styles.errorInput : ''} onChange={handlePassword_si} type='password' placeholder='Put your password' value={password_si}/>
+                            <input className={errorPassword_si ? styles.errorInput : ''} onChange={handlePassword_si} type='password' placeholder='Put your password' value={password_si} />
                             {errorPassword_si && <img onMouseEnter={() => handleShow_si('password')} onMouseLeave={handleShow_si} className={styles.errorIconPass} src={errorIcon} alt='' />}
                             {showErrorPassword_si && <div className={styles.errorMessage}><label>{errorPassword_si}</label></div>}
                         </div>
@@ -196,8 +196,8 @@ const Auth = () => {
                     </form>
                     <div className={styles.divider}><label>or</label></div>
                     <div className={styles.alternatives}>
-                        <GoogleOAuthProvider clientId="351591539699-803aglb7vb3mo8r7cqn6pvqnk2r1p29j.apps.googleusercontent.com">
-                            <GoogleLogin onSuccess={(event) => handleSuccessGoogle('signup', event)} onError={handleErrorGoogle} />
+                        <GoogleOAuthProvider clientId="351591539699-dsc4h1c5djml6is8co4ef3un46cpr5ku.apps.googleusercontent.com">
+                            <GoogleLogin onSuccess={handleSuccessGoogle} onError={handleErrorGoogle} />
                         </GoogleOAuthProvider>
                     </div>
                     <div className={styles.change}>
