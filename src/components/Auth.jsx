@@ -127,6 +127,19 @@ const Auth = () => {
 
     const toggleForm = (type) => {
         setShowSignupForm(type === 'signup');
+        setEmail_su('');
+        setUsername_su('');
+        setPassword_su('');
+        setEmail_si('');
+        setPassword_si('');
+        setErrorUsername_su('');
+        setErrorEmail_su('');
+        setErrorPassword_su('');
+        setErrorGeneral_su('');
+        setSuccessGeneral_su('');
+        setErrorEmail_si('');
+        setErrorPassword_si('');
+        setErrorGeneral_si('')
     };
 
     const changeImage = () => {

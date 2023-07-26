@@ -8,7 +8,6 @@ import Shop from './components/Shop';
 import './styles/App.module.css'
 
 const App = () => {
-  //configuration
   axios.defaults.withCredentials = true;
   axios.defaults.baseURL = 'http://localhost:5000';
 
