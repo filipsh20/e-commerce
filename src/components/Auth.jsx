@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import axios from 'axios';
+
+import { GOOGLE_ID } from '../utils/env';
+
 import styles from '../styles/Auth.module.css';
 import image1 from '../assets/auth1.jpg';
 import image2 from '../assets/auth2.jpg';
@@ -169,7 +172,7 @@ const Auth = () => {
                     </form>
                     <div className={styles.divider}><label>or</label></div>
                     <div className={styles.alternatives}>
-                        <GoogleOAuthProvider clientId="351591539699-dsc4h1c5djml6is8co4ef3un46cpr5ku.apps.googleusercontent.com">
+                        <GoogleOAuthProvider clientId={GOOGLE_ID}>
                             <GoogleLogin onSuccess={handleSuccessGoogle} onError={handleErrorGoogle} />
                         </GoogleOAuthProvider>
                     </div>
@@ -196,7 +199,7 @@ const Auth = () => {
                     </form>
                     <div className={styles.divider}><label>or</label></div>
                     <div className={styles.alternatives}>
-                        <GoogleOAuthProvider clientId="351591539699-dsc4h1c5djml6is8co4ef3un46cpr5ku.apps.googleusercontent.com">
+                        <GoogleOAuthProvider clientId={GOOGLE_ID}>
                             <GoogleLogin onSuccess={handleSuccessGoogle} onError={handleErrorGoogle} />
                         </GoogleOAuthProvider>
                     </div>
