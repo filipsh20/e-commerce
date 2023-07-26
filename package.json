@@ -1,0 +1,43 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "E-commerce web app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/filipsh20/e-commerce.git"
+  },
+  "keywords": [
+    "e-commerce"
+  ],
+  "author": "Jaume",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/filipsh20/e-commerce/issues"
+  },
+  "homepage": "https://github.com/filipsh20/e-commerce#readme",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^6.8.0",
+    "google-auth-library": "^9.0.0",
+    "jsonwebtoken": "^9.0.1",
+    "mongodb": "^5.7.0",
+    "node-cron": "^3.0.2",
+    "nodemailer": "^6.9.4",
+    "socket.io": "^4.7.1",
+    "stripe": "^12.14.0",
+    "uuid": "^9.0.0"
+  }
+}
