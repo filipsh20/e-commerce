@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
+
+body {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.containerAuth {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    font-size: 16px;
+}
+
+.contentLeft {
+    flex: 3;
+}
+
+.slider {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.slider img {
+    position: absolute;
+    width: 100%;
+    object-fit: cover;
+    transition: opacity 1s ease
+}
+
+.showImage {
+    opacity: 1;
+}
+
+.hideImage {
+    opacity: 0;
+}
+
+.contentRight {
+    flex: 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentForm {
+    text-align: center;
+    width: 450px;
+}
+
+.hideForm {
+    display: none;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+.controller {
+    position: relative;
+    align-items: center;
+    display: flex;
+    width: 180%;
+}
+
+.errorInput {
+    border: 2px solid red;
+}
+
+.errorIcon {
+    position: absolute;
+    top: 50%;
+    left: 420px;
+    transform: translate(-35%, -30%);
+}
+
+.errorIconPass {
+    position: absolute;
+    top: 50%;
+    left: 390px;
+    margin-right: 30px;
+    transform: translate(-35%, -30%);
+}
+
+.errorMessage {
+    margin-left: 40px;
+    background-color: rgb(255, 127, 127);
+    border: 2px solid red;
+    padding: 10px;
+}
+
+.errorMessage2 {
+    margin-top: 20px;
+    background-color: rgb(255, 127, 127);
+    border: 2px solid red;
+    padding: 10px;
+}
+
+.successMessage {
+    margin-top: 20px;
+    background-color: rgb(106, 189, 106);
+    border: 2px solid rgb(6, 97, 15);
+    padding: 10px;
+}
+
+.divider {
+    margin: 30px;
+    position: relative;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 45%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.divider::before {
+    left: 0;
+    transform: translateX(-14%);
+}
+
+.divider::after {
+    right: 0;
+    transform: translateX(14%);
+}
+
+.alternatives {
+    display: flex;
+    justify-content: center;
+}
+
+.change {
+    margin-top: 40px;
+}
+
+.changeLabel {
+    color: rgb(16, 125, 215);
+    font-weight: bold;
+}
+
+.changeLabel:hover {
+    color: rgb(0, 95, 183);
+    cursor: pointer;
+}
+
+.containerAuth button,
+.containerAuth input {
+    width: 450px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 10px;
+    font-size: medium;
+}
+
+.containerAuth input {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(225, 223, 223);
+    height: 50px;
+    outline: none;
+    margin-top: 10px;
+}
+
+.containerAuth button {
+    background-color: rgb(16, 125, 215);
+    transition: background-color 0.5s;
+    border-radius: 10px;
+    color: white;
+    height: 45px;
+    margin-top: 30px;
+}
+
+.containerAuth button:disabled {
+    background-color: rgb(139, 169, 236);
+}
+
+.containerAuth button:disabled:hover {
+    background-color: rgb(139, 169, 236);
+    cursor: initial;
+}
+
+.containerAuth button:hover {
+    background-color: rgb(0, 95, 183);
+    cursor: pointer;
+}
+
+@media screen and (max-width: 750px) {
+    .contentLeft {
+        display: none;
+    }
+}
