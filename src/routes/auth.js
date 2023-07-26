@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const express = require('express');
 const router = express.Router();
 const SMTP = require('../utils/smtp');
+const {v4: uuidv4} = require('uuid');
 
 //Authenticate clients
 router.get('/session', async (req, res) => {
@@ -45,8 +46,9 @@ router.post('/signup', async (req, res) => {
         } else if (validateEmail) {
             res.status(400).json({ message: 'This email is not available' });
         } else {
+            const id = uuidv4();
             const hasedPassword = await bcrypt.hash(password, 10);
-            await usersCollection.insertOne({ username, email, password: hasedPassword, verified: false });
+            await usersCollection.insertOne({_id: id, username, email, password: hasedPassword, verified: false });
             const tokenVerify = jsonwebtoken.sign({ email }, process.env.JWT_VERIFY, { expiresIn: '1h' });
             SMTP.sendVerify(email, tokenVerify);
             res.cookie('tokenVerify', tokenVerify, { maxAge: 3600000, httpOnly: true });
@@ -106,6 +108,7 @@ router.get('/verify', async (req, res) => {
     }
 })
 
+//Google authentication
 const { OAuth2Client } = require('google-auth-library');
 const client = new OAuth2Client(process.env.GOOGLE_ID, process.env.GOOGLE_SECRET);
 
@@ -117,7 +120,7 @@ router.post('/google', async (req, res) => {
         const usersCollection = await cluster0('e-commerce', 'users');
         const userInfo = await usersCollection.findOne({ email });
 
-        if (userInfo) {
+        if (userInfo.verified) {
             const tokenAuth = jsonwebtoken.sign({ email }, process.env.JWT_AUTH, { expiresIn: '1h' });
             res.cookie('tokenAuth', tokenAuth)
             res.status(200).send()
@@ -129,7 +132,5 @@ router.post('/google', async (req, res) => {
         res.status(500).json({ message: 'Google authentication failed' });
     }
 });
-
-//Google signup authentication
 
 module.exports = router;
