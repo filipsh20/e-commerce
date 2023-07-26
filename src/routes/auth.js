@@ -3,14 +3,13 @@ const jsonwebtoken = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const express = require('express');
 const router = express.Router();
-const SMTP = require('../utils/smtp')
+const SMTP = require('../utils/smtp');
 
 //Authenticate clients
 router.get('/session', async (req, res) => {
     try {
         const tokenAuth = req.cookies.tokenAuth;
-        const { email } = jsonwebtoken.verify(tokenAuth, process.env.JWT_AUTH);
-        console.log(email)
+        jsonwebtoken.verify(tokenAuth, process.env.JWT_AUTH);
         res.status(200).send(true)
     } catch (error) {
         res.status(401).send(false)
@@ -107,8 +106,30 @@ router.get('/verify', async (req, res) => {
     }
 })
 
-//Google authentication
 const { OAuth2Client } = require('google-auth-library');
 const client = new OAuth2Client(process.env.GOOGLE_ID, process.env.GOOGLE_SECRET);
+
+router.post('/google', async (req, res) => {
+    try {
+        const { credential } = req.body;
+        const decodedToken = await client.verifyIdToken({ idToken: credential, audience: process.env.GOOGLE_ID });
+        const { email } = decodedToken.getPayload();
+        const usersCollection = await cluster0('e-commerce', 'users');
+        const userInfo = await usersCollection.findOne({ email });
+
+        if (userInfo) {
+            const tokenAuth = jsonwebtoken.sign({ email }, process.env.JWT_AUTH, { expiresIn: '1h' });
+            res.cookie('tokenAuth', tokenAuth)
+            res.status(200).send()
+        } else {
+            res.status(400).json({ message: 'Google authentication failed' });
+        }
+    } catch (error) {
+        console.error('Error during Google authentication:', error);
+        res.status(500).json({ message: 'Google authentication failed' });
+    }
+});
+
+//Google signup authentication
 
 module.exports = router;
